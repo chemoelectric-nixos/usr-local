@@ -1,4 +1,5 @@
-= Hashes and detached _PGP_ signatures for packages at
-*https://sourceforge.net/projects/chemoelectric-nixos/files/usr-local-v1/*
+= Hashes and detached _PGP_ signatures for the binary packages
+
+The packages are at https://sourceforge.net/projects/chemoelectric-nixos/files/usr-local-v1/
 
 The key fingerprint is 973F 0CFD F7FC 191C B3DF  C020 1D11 7573 EE03 28A7
