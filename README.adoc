@@ -1,0 +1,32 @@
+= +/usr/local+ for _NixOS_
+
+The +/usr/local+ scheme devised here should give you complete, unpatched
+GCC suites that you can use without wrappers, outside the _Nix_
+environment. Only _glibc_ and _libxcrypt_ are used from within _NixOS_
+(unless you arrange it otherwise).
+
+The +/usr/local+ is mounted and unmounted by a systemd service. There
+is no magic to this. It is simply init scripts that you can modify to
+your liking.
+
+To keep the +/usr/local+ very clean and endlessly modifiable, packages
+are _not_ installed with +make install+ commands, but with +make
+install DESTDIR=/some/staged/install/place+ commands. The binaries can
+be made into tarballs, which in turn can be saved in repositories,
+caches, the _Nix_ store, etc. One way or another, they end up in their
+own directories. (In the example given here, each ends up in its own
+_btrfs_ subvolume.) These directories are then overlayed on top of
+each other, along with a ‘core’ containing such things as a slightly
+modified copy of the current system _glibc_. The overlay filesystem is
+mounted readonly at +/usr/local+.
+
+The runtime loader for the +/usr/local+ is +pkgs.nix-ld+, with
++NIX_LD_LIBRARY_PATH+ set to +/usr/local/lib64:/usr/local/lib+ and
+possibly including other subdirectories within the +/usr/local+ and
+one’s +/home+. Hardcoded runpaths are not used.footnote:[Mixing this
+use of +pkgs.nix-ld+ with other uses is an exercise for the
+reader. For a most extreme example, one could install all the
+libraries needed for an foreign executable into the +/usr/local+,
+instead of using any libraries but _glibc_ and _libxcrypt_ in the
+_Nix_ store.]
+
