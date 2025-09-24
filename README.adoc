@@ -27,6 +27,6 @@ one’s */home*. Hardcoded runpaths are not used.footnote:[Mixing this
 use of *pkgs.nix-ld* with other uses is an exercise for the
 reader. For a most extreme example, one could install all the
 libraries needed for an foreign executable into the */usr/local*,
-instead of using any libraries but _glibc_ and _libxcrypt_ in the
+instead of using any libraries but _glibc_ and _libxcrypt_ from the
 _Nix_ store.]
 
