@@ -1,3 +1,6 @@
+#
+# The binary packages are hosted on my Kubuntu mini-PC ‘manuel’.
+#
 {
   "binutils-2.45-binary-for-contact" = {
     url = "http://manuel/usr-local-packages/binutils-2.45-binary-for-contact.tar.xz";
