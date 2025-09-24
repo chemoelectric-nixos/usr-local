@@ -1,0 +1,31 @@
+{ pkgs, ... }:
+
+{
+
+  fileSystems = {
+
+  ..........................................................
+
+
+    "/mount/usr-local/packages" = {
+      device = "/dev/disk/by-uuid/bc1f22c1-4725-47b2-aa28-b1e1c3b2d219";
+      fsType = "btrfs";
+      options = [
+        "subvol=@usr-local/@packages"
+        "acl"
+      ];
+    };
+
+    "/mount/usr-local/core" = {
+      device = "tmpfs";
+      fsType = "tmpfs";
+      options = [ "defaults" ];
+    };
+
+  ..........................................................
+
+  };
+
+  ..........................................................
+
+}

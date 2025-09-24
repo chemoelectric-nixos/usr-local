@@ -1,0 +1,133 @@
+{
+
+  .........
+
+    let
+
+      CONTACT = "contact";
+      DOWNDRAFT = "downdraft";
+      POLLY = "polly";
+
+      host-info = {
+
+        "x86_64-linux-gnu" = {
+          host-platform = "x86_64-linux-gnu";
+          architecture = {
+            cpu = "x86-64";
+            gpu = "";
+          };
+        };
+
+        "x86_64-unknown-linux-gnu" = {
+          host-platform = "x86_64-unknown-linux-gnu";
+          architecture = {
+            cpu = "x86-64";
+            gpu = "";
+          };
+        };
+
+        "x86_64-pc-linux-gnu" = {
+          host-platform = "x86_64-pc-linux-gnu";
+          architecture = {
+            cpu = "x86-64";
+            gpu = "";
+          };
+        };
+
+        #
+        # ‘contact’ is a mini-PC with AMD Zen 4 CPU.
+        #
+        "${CONTACT}" = {
+          host-platform = "x86_64-unknown-linux-gnu";
+          architecture = {
+            cpu = "znver4";
+            # I think the following might be correct for LLVM.
+            # It does not matter much, because I try to avoid
+	    # having LLVM on my system.
+            gpu = "gfx1150";
+          };
+        };
+
+        #
+        # ‘downdraft’ is an Acer Nitro 5 laptop. It has Nvidia
+        # GPU but we normally use the onboard Intel GPU instead.
+        # This leaves the Nvidia free to program, but we have
+        # no idea how to specify it. I am never going to program
+	# it, anyway. It might get used by BOINC and I would use
+	# it when running FlightGear.
+        #
+        "${DOWNDRAFT}" = {
+          host-platform = "x86_64-unknown-linux-gnu";
+          architecture = {
+            cpu = "alderlake";
+            gpu = "";
+          };
+        };
+
+        #
+        # ‘polly’ is an OpenVPN server and does not have things
+        # like /usr/local on it. ‘polly’ will be included in
+        # /usr/local/share/config.site, however. One might,
+        # after all, wish to compile something for it.
+        #
+        "${POLLY}" = {
+          host-platform = "x86_64-unknown-linux-gnu";
+          architecture = {
+            cpu = "alderlake";
+            gpu = "";
+          };
+        };
+
+      };
+
+    in
+
+    {
+      nixosConfigurations = {
+
+        contact =
+
+       ................................
+
+              inherit CONTACT DOWNDRAFT POLLY;
+              inherit host-info;       
+              hostname = CONTACT;
+              usr-local = {
+                packages = [
+                  #
+                  # Packages compiled for AMD Zen 4.
+                  #
+                  "binutils-2.45-binary-for-contact"
+                  "gcc-11.5.0-binary-for-contact"
+                  "gmp-6.3.0-binary-for-contact"
+                  "mpfr-4.2.2-binary-for-contact"
+                  "mpc-1.3.1-binary-for-contact"
+                ];
+              };
+            };
+
+       ...............................
+
+
+        downdraft =
+
+       ...............................
+
+
+              inherit CONTACT DOWNDRAFT POLLY;
+              inherit host-info;
+              hostname = DOWNDRAFT;
+              usr-local = {
+                packages = [
+                  "binutils-2.45-binary-for-x86_64-unknown-linux-gnu"
+                  "gcc-11.5.0-binary-for-x86_64-unknown-linux-gnu"
+                  "gmp-6.3.0-binary-for-x86_64-unknown-linux-gnu"
+                  "mpfr-4.2.2-binary-for-x86_64-unknown-linux-gnu"
+                  "mpc-1.3.1-binary-for-x86_64-unknown-linux-gnu"
+                ];
+              };
+            };
+
+       ...............................
+
+}
