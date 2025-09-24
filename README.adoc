@@ -30,3 +30,45 @@ libraries needed for an foreign executable into the */usr/local*,
 instead of using any libraries but _glibc_ and _libxcrypt_ from the
 _Nix_ store.]
 
+***
+
+To set up your own */usr/local*, you can try starting with the binary
+packages at
+https://sourceforge.net/projects/chemoelectric-nixos/files/usr-local-v1/
+There are hashes and digital signatures for these packages in the
+*hashes-and-signatures* subdirectory. You can get sources for these
+packages at any good GNU mirror, such as https://ftp.wayne.edu/
+
+The */usr/local* is set up mostly by my _NixOS_ configuration. In the
+*etc-nixos-example* subdirectory, I provide snippets from the _NixOS_
+configuration at the time of this writing. I have left out some
+details, such as configuration code to enable *nix-ld* and create
+mount points, and _Home Manager_ code to set
+*NIX_LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib* and add
+*/usr/local/bin* to my *PATH*.
+
+I have the packages hosted on a local webserver and automatically
+unpacked into individual _btrfs_ subvolumes. This saves me effort in
+rearranging how I have things set up. One could simply unpack the
+packages by hand, however, and put them where one wishes them to be.
+
+The packages are a _GCC 11_ toolchain. Every language is included
+except Brig (which was being removed and is not in _GCC 12_). The
+reason for choosing _GCC 11_ is that this is the last version of _GCC_
+in which the implementation of _D_ is written in _C++_ instead of in
+_D_ itself. Thus this is the best starting point for building later
+versions of _GCC_.
+
+The packages have been built with the */usr/local* itself. My
+*/usr/local* was bootstrapped from humble beginnings, starting with
+*pkgs.gnat-bootstrap11*, modified _Nixpkgs_ code, ad hoc abuse of the
+_GCC_ build process, overlay filesystems and chroots, and (most
+importantly) powerful magic potions and incantations.footnote:[One
+could also have started the bootstrap with packages built on a regular
+Linux distro. The heroics were necessary only to find a way to start
+with the broken compilers that come with _NixOS_ itself. It seemed at
+one time this would be necessary. However, now that I have other means
+to create binaries and host them online, I am not sure there is any
+reason to start with *pkgs.gnat-bootstrap11* for my other projects.]
+
+From here on, I think you are on your own. Have fun!
