@@ -1,0 +1,5 @@
+89a2d11564944f20e93e877205e433599580bd8ce3abf76f7663ffc22b2dc1fb503e9426889c0c0ce0f7bfef78cc77d8  binutils-2.45-binary-for-x86_64-unknown-linux-gnu.tar.xz
+e31f9a6c7a4b4ef7e224047f7290586318fa0d903f82c2f90b2ed236be092dbab6c3519058bc55c54dc3764ac810243c  gcc-11.5.0-binary-for-x86_64-unknown-linux-gnu.tar.xz
+c86c8a1737adae56e5bdf1f9535d1967bcb7c7fc72e8068759d065b1d1d8ab1bec4c56a5d966cf6346923387c2acf25e  gmp-6.3.0-binary-for-x86_64-unknown-linux-gnu.tar.xz
+ecb5db2b0e70ac3a3723a299b9b64493dc9f1bc74ffaf0fd8b5e76a80afa310a80c1202ca9cee625d691538c063e013c  mpc-1.3.1-binary-for-x86_64-unknown-linux-gnu.tar.xz
+d1732638f030a04705e827e42f07213350fc0afdefc72306388e2c8003fbfefd5903d6ce39cce88f210b3b1c28454cd8  mpfr-4.2.2-binary-for-x86_64-unknown-linux-gnu.tar.xz
